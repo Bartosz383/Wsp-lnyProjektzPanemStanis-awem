@@ -1,0 +1,1 @@
+# Wsp-lnyProjektzPanemStanis-awem
