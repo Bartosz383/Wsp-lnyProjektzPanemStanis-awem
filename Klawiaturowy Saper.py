@@ -35,27 +35,27 @@ def head():
                         print("\n" * 100)
                     def czas():
                         czasomierz = 60
-                        ilosc_prob = 10
                         while czasomierz > 0:
                             czasomierz = czasomierz - 1
                             sleep(1)
+                            ilosc_prob = 10
+                            if wpis_gracza != klawisz_wygranej or wybrane_miejsca:
+                                ilosc_prob = ilosc_prob - 1
+                                print("Źle! Próbuj dalej!")
+
+                            elif wpis_gracza == wybrane_miejsca:
+                                print("Wpadłeś w bombę klawiaturową, Przegrałeś!")
+                                exit(99)
+                            elif ilosc_prob == 0:
+                                print("Skończyły ci się próby, Przegrałeś!")
+                                exit(99)
+                            elif wpis_gracza == klawisz_wygranej:
+                                print("Brawo, znalazłeś wygrany klawisz!")
                         if czasomierz == 0:
                             print('Koniec czasu, przegrałeś!')
                             exit(99)
 
-                    ilosc_prob = 10
-                    if wpis_gracza != klawisz_wygranej or wybrane_miejsca:
-                        ilosc_prob = ilosc_prob - 1
-                        print("Źle! Próbuj dalej!")
 
-                    elif wpis_gracza == wybrane_miejsca:
-                        print("Wpadłeś w bombę klawiaturową, Przegrałeś!")
-                        exit(99)
-                    elif ilosc_prob == 0:
-                        print("Skończyły ci się próby, Przegrałeś!")
-                        exit(99)
-                    elif wpis_gracza == klawisz_wygranej:
-                        print("Brawo, znalazłeś wygrany klawisz!")
                     wpis()
                     czas()
                 przechodzenie_gry()
@@ -69,10 +69,10 @@ def head():
                   "\nKomputer będzie zdolny ci dawać wskazówki. Będzie on także zdolny do mówienia czy twoja próba jest daleko, blisko bądź bardzo blisko do celu."
                   "\nZakres klawiszy jest od q do m. (Tylko alfabet)"
                   "\n\n Powodzenia!")
+            exit(99)
         elif line_1_input == "W":
             print("Do Zobaczenia!")
             exit(99)
         else:
             print("Przepraszamy, lecz nie znaleziono takiej komendy.")
 head()
-
