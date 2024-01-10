@@ -119,19 +119,23 @@ class CountdownThread(threading.Thread):
 
     def run(self):
         for i in range(self.start_value, 0, -1):
+            print("\n")
             print(i)
             time.sleep(1)
-def czas():
-    global start_time
-    czasomierz = 5
-    while czasomierz > 0:
-        elapsed_time = int(time.time() - start_time)
-        czasomierz = 5 - elapsed_time
-        print(f"Czas: {czasomierz} sekund")
+            #break
+          #  exit(99)
 
-        if czasomierz == 0:
-         print('Koniec czasu, przegrałeś!')
-         exit(99)
+# def czas():
+#     global start_time
+#     czasomierz = 5
+#     while czasomierz > 0:
+#         elapsed_time = int(time.time() - start_time)
+#         czasomierz = 5 - elapsed_time
+#         print(f"Czas: {czasomierz} sekund")
+#
+#         if czasomierz == 0:
+#          print('Koniec czasu, przegrałeś!')
+#          exit(99)
     # czasomierz = czasomierz - 1
     # sleep(1)
     # print(f"Czas: {czasomierz} sekund")
@@ -153,9 +157,12 @@ def wpis():
 
 def ilosc_prod():
     ilosc_prob = 10
+    thread = CountdownThread(5)
+    thread.start()
 
     while True:
         wpis_gracza = input("Wpisz literę: ")
+
 
         if wpis_gracza == wybrane_miejsca:
             ilosc_prob = ilosc_prob - 1
