@@ -433,9 +433,11 @@
 
 import tkinter as tk
 from tkinter import messagebox
+import random
 
 class TaskManager:
     def __init__(self, root):
+        root.configure(bg="white")
         self.root = root    # okienko
         self.root.title("Task Manager")     # nazwa okienka
 
@@ -462,6 +464,9 @@ class TaskManager:
 
         self.load_button = tk.Button(root, text="Wczytaj z pliku", command=self.load_from_file)
         self.load_button.pack(pady=5)
+
+        self.color_button = tk.Button(root, text="Zmień kolor", command=self.change_color)
+        self.color_button.pack(pady=5)
 
     def add_task(self):
         task = self.entry.get()
@@ -509,6 +514,13 @@ class TaskManager:
             messagebox.showwarning("Błąd", f"Plik {filename} nie istnieje.")
         except Exception as e:
             messagebox.showwarning("Błąd", f"Wystąpił błąd podczas wczytywania z pliku:\n{str(e)}")
+
+    def change_color(self):
+        list_of_colors = ["maroon", "red", "orange", "yellow", "green", "cyan", "blue",
+                          "pink", "purple", "brown",
+                          "white", "grey", "black"]
+        root.configure(bg=random.choice(list_of_colors))
+
 
 if __name__ == "__main__":
     root = tk.Tk()
