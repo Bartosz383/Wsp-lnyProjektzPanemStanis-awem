@@ -537,9 +537,9 @@ import random
 
 slowa = ["kot", "pies", "chomik", "ptak", "szczur", "królik", "rybka", "świnia", "krowa", "kura", "koń", "owca"]
 wybrane_slowo = random.choice(slowa)
-print(wybrane_slowo)
 def gra_w_wisielca():
     print("Odgadnij moje słowo: \nKategoria to zwierzęta domowe/hodowlane.")
+    print("Zapamiętaj słowa na pamięć!")
     if input() == wybrane_slowo:
         print("Brawo, odgadłeś słowo!")
     else:
