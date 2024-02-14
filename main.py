@@ -429,100 +429,163 @@
 #
 # # Uruchamia pętlę główną
 # root.mainloop()
+#
+#
+# import tkinter as tk
+# from tkinter import messagebox
+# import random
+#
+# class TaskManager:
+#     def __init__(self, root):
+#         root.configure(bg="white")
+#         self.root = root    # okienko
+#         self.root.title("Task Manager")     # nazwa okienka
+#
+#         self.tasks = []     # początkowa lista zadań
+#
+#         # Tworzenie interfejsu użytkownika
+#         self.label = tk.Label(root, text="Dodaj nowe zadanie:")
+#         self.label.pack(pady=10)
+#
+#         self.entry = tk.Entry(root, width=40)
+#         self.entry.pack(pady=10)
+#
+#         self.add_button = tk.Button(root, text="Dodaj zadanie", command=self.add_task)
+#         self.add_button.pack(pady=5)
+#
+#         self.remove_button = tk.Button(root, text="Usuń zadanie", command=self.remove_task)
+#         self.remove_button.pack(pady=5)
+#
+#         self.show_button = tk.Button(root, text="Wyświetl zadania", command=self.show_tasks)
+#         self.show_button.pack(pady=10)
+#
+#         self.save_button = tk.Button(root, text="Zapisz do pliku", command=self.save_to_file)
+#         self.save_button.pack(pady=5)
+#
+#         self.load_button = tk.Button(root, text="Wczytaj z pliku", command=self.load_from_file)
+#         self.load_button.pack(pady=5)
+#
+#         self.color_button = tk.Button(root, text="Zmień kolor", command=self.change_color)
+#         self.color_button.pack(pady=5)
+#
+#     def add_task(self):
+#         task = self.entry.get()
+#         if task:
+#             self.tasks.append(task)
+#             messagebox.showinfo("Sukces", f"Dodano zadanie: {task}")    # informacja w okienku, alert
+#             self.entry.delete(0, tk.END)
+#         else:
+#             messagebox.showwarning("Błąd", "Wprowadź treść zadania!")
+#
+#     def remove_task(self):
+#         if self.tasks:
+#             selected_task = messagebox.askokcancel("Usuń zadanie", "Czy na pewno chcesz usunąć ostatnie zadanie?")
+#             if selected_task:
+#                 removed_task = self.tasks.pop()
+#                 messagebox.showinfo("Sukces", f"Usunięto zadanie: {removed_task}")
+#         else:
+#             messagebox.showwarning("Błąd", "Brak zadań do usunięcia!")
+#
+#     def show_tasks(self):
+#         if self.tasks:
+#             tasks_text = "\n".join(self.tasks)
+#             messagebox.showinfo("Lista zadań", f"Aktualne zadania:\n{tasks_text}")
+#         else:
+#             messagebox.showinfo("Lista zadań", "Brak zadań do wyświetlenia.")
+#
+#     def save_to_file(self):
+#         if self.tasks:
+#             filename = "tasks.txt" # nazwa pliku
+#             with open(filename, "w", encoding='utf-8') as file:     # otwórz plik   # napisz w pliku i zapisz
+#                 for task in self.tasks:
+#                     file.write(task + "\n")
+#             messagebox.showinfo("Sukces", f"Zapisano zadania do pliku: {filename}")
+#         else:
+#             messagebox.showwarning("Błąd", "Brak zadań do zapisania!")
+#
+#     def load_from_file(self):
+#         try:
+#             filename = "tasks.txt"
+#             with open(filename, "r", encoding='utf-8') as file:
+#                 lines = file.readlines()
+#                 self.tasks = [line.strip() for line in lines]
+#             messagebox.showinfo("Sukces", f"Wczytano zadania z pliku: {filename}")
+#         except FileNotFoundError:
+#             messagebox.showwarning("Błąd", f"Plik {filename} nie istnieje.")
+#         except Exception as e:
+#             messagebox.showwarning("Błąd", f"Wystąpił błąd podczas wczytywania z pliku:\n{str(e)}")
+#
+#     def change_color(self):
+#         list_of_colors = ["maroon", "red", "orange", "yellow", "green", "cyan", "blue",
+#                           "pink", "purple", "brown",
+#                           "white", "grey", "black"]
+#         root.configure(bg=random.choice(list_of_colors))
+#         color_root = tk.Tk()
+#         self.root = color_root
+#         self.root.title = ("Wybierz kolor tła:")
+#
+#
+# if __name__ == "__main__":
+#     root = tk.Tk()
+#     app = TaskManager(root)
+#     root.mainloop()
 
 
-import tkinter as tk
-from tkinter import messagebox
 import random
 
-class TaskManager:
-    def __init__(self, root):
-        root.configure(bg="white")
-        self.root = root    # okienko
-        self.root.title("Task Manager")     # nazwa okienka
 
-        self.tasks = []     # początkowa lista zadań
 
-        # Tworzenie interfejsu użytkownika
-        self.label = tk.Label(root, text="Dodaj nowe zadanie:")
-        self.label.pack(pady=10)
-
-        self.entry = tk.Entry(root, width=40)
-        self.entry.pack(pady=10)
-
-        self.add_button = tk.Button(root, text="Dodaj zadanie", command=self.add_task)
-        self.add_button.pack(pady=5)
-
-        self.remove_button = tk.Button(root, text="Usuń zadanie", command=self.remove_task)
-        self.remove_button.pack(pady=5)
-
-        self.show_button = tk.Button(root, text="Wyświetl zadania", command=self.show_tasks)
-        self.show_button.pack(pady=10)
-
-        self.save_button = tk.Button(root, text="Zapisz do pliku", command=self.save_to_file)
-        self.save_button.pack(pady=5)
-
-        self.load_button = tk.Button(root, text="Wczytaj z pliku", command=self.load_from_file)
-        self.load_button.pack(pady=5)
-
-        self.color_button = tk.Button(root, text="Zmień kolor", command=self.change_color)
-        self.color_button.pack(pady=5)
-
-    def add_task(self):
-        task = self.entry.get()
-        if task:
-            self.tasks.append(task)
-            messagebox.showinfo("Sukces", f"Dodano zadanie: {task}")    # informacja w okienku, alert
-            self.entry.delete(0, tk.END)
+slowa = ["kot", "pies", "chomik", "ptak", "szczur", "królik", "rybka", "świnia", "krowa", "kura", "koń", "owca"]
+wybrane_slowo = random.choice(slowa)
+print(wybrane_slowo)
+def gra_w_wisielca():
+    print("Odgadnij moje słowo: \nKategoria to zwierzęta domowe/hodowlane.")
+    if input() == wybrane_slowo:
+        print("Brawo, odgadłeś słowo!")
+    else:
+        print("Zła odpowiedź! Kreska narysowana, masz jeszcze 10 prób")
+        if input() == wybrane_slowo:
+            print("Brawo, odgadłeś słowo!")
         else:
-            messagebox.showwarning("Błąd", "Wprowadź treść zadania!")
-
-    def remove_task(self):
-        if self.tasks:
-            selected_task = messagebox.askokcancel("Usuń zadanie", "Czy na pewno chcesz usunąć ostatnie zadanie?")
-            if selected_task:
-                removed_task = self.tasks.pop()
-                messagebox.showinfo("Sukces", f"Usunięto zadanie: {removed_task}")
-        else:
-            messagebox.showwarning("Błąd", "Brak zadań do usunięcia!")
-
-    def show_tasks(self):
-        if self.tasks:
-            tasks_text = "\n".join(self.tasks)
-            messagebox.showinfo("Lista zadań", f"Aktualne zadania:\n{tasks_text}")
-        else:
-            messagebox.showinfo("Lista zadań", "Brak zadań do wyświetlenia.")
-
-    def save_to_file(self):
-        if self.tasks:
-            filename = "tasks.txt" # nazwa pliku
-            with open(filename, "w", encoding='utf-8') as file:     # otwórz plik   # napisz w pliku i zapisz
-                for task in self.tasks:
-                    file.write(task + "\n")
-            messagebox.showinfo("Sukces", f"Zapisano zadania do pliku: {filename}")
-        else:
-            messagebox.showwarning("Błąd", "Brak zadań do zapisania!")
-
-    def load_from_file(self):
-        try:
-            filename = "tasks.txt"
-            with open(filename, "r", encoding='utf-8') as file:
-                lines = file.readlines()
-                self.tasks = [line.strip() for line in lines]
-            messagebox.showinfo("Sukces", f"Wczytano zadania z pliku: {filename}")
-        except FileNotFoundError:
-            messagebox.showwarning("Błąd", f"Plik {filename} nie istnieje.")
-        except Exception as e:
-            messagebox.showwarning("Błąd", f"Wystąpił błąd podczas wczytywania z pliku:\n{str(e)}")
-
-    def change_color(self):
-        list_of_colors = ["maroon", "red", "orange", "yellow", "green", "cyan", "blue",
-                          "pink", "purple", "brown",
-                          "white", "grey", "black"]
-        root.configure(bg=random.choice(list_of_colors))
+            print("Zła odpowiedź! Kreska narysowana, masz jeszcze 9 prób")
+            if input() == wybrane_slowo:
+                print("Brawo, odgadłeś słowo!")
+            else:
+                print("Zła odpwiedź! Kreska narysowana, masz jeszcze 8 prób")
+                if input() == wybrane_slowo:
+                    print("Brawo, odgadłeś słowo!")
+                else:
+                    print("Zła odpwiedź! Kreska narysowana, masz jeszcze 7 prób")
+                    if input() == wybrane_slowo:
+                        print("Brawo, odgadłeś słowo!")
+                    else:
+                        print("Zła odpwiedź! Kreska narysowana, masz jeszcze 6 prób")
+                        if input() == wybrane_slowo:
+                            print("Brawo, odgadłeś słowo!")
+                        else:
+                            print("Zła odpwiedź! Kreska narysowana, masz jeszcze 5 prób")
+                            if input() == wybrane_slowo:
+                                print("Brawo, odgadłeś słowo!")
+                            else:
+                                print("Zła odpwiedź! Kreska narysowana, masz jeszcze 4 próby")
+                                if input() == wybrane_slowo:
+                                    print("Brawo, odgadłeś słowo!")
+                                else:
+                                    print("Zła odpwiedź! Kreska narysowana, masz jeszcze 3 próby")
+                                    if input() == wybrane_slowo:
+                                        print("Brawo, odgadłeś słowo!")
+                                    else:
+                                        print("Zła odpwiedź! Kreska narysowana, masz jeszcze 2 próby")
+                                        if input() == wybrane_slowo:
+                                            print("Brawo, odgadłeś słowo!")
+                                        else:
+                                            print("Zła odpwiedź! Kreska narysowana, masz jeszcze 1 próbę")
+                                            if input() == wybrane_slowo:
+                                                print("Brawo, odgadłeś słowo!")
+                                            else:
+                                                print("Przegrałeś, powieszono cię! :(")
 
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = TaskManager(root)
-    root.mainloop()
+    print("Witaj w grze w wisielca!")
+    gra_w_wisielca()
