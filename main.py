@@ -537,17 +537,20 @@ import random
 
 slowa = ["kot", "pies", "chomik", "ptak", "szczur", "królik", "rybka", "świnia", "krowa", "kura", "koń", "owca"]
 wybrane_slowo = random.choice(slowa)
+
+def komunikat(n):
+    print(f"Zła odpowiedź! Kreska narysowana, masz jeszcze {n} prób")
 def gra_w_wisielca():
     print("Odgadnij moje słowo: \nKategoria to zwierzęta domowe/hodowlane.")
     print("Zapamiętaj słowa na pamięć!")
     if input() == wybrane_slowo:
         print("Brawo, odgadłeś słowo!")
     else:
-        print("Zła odpowiedź! Kreska narysowana, masz jeszcze 10 prób")
+        komunikat(10)
         if input() == wybrane_slowo:
             print("Brawo, odgadłeś słowo!")
         else:
-            print("Zła odpowiedź! Kreska narysowana, masz jeszcze 9 prób")
+            komunikat(9)
             if input() == wybrane_slowo:
                 print("Brawo, odgadłeś słowo!")
             else:
