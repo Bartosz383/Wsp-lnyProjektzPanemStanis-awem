@@ -45,7 +45,7 @@
 #         break
 #     else:
 #         print("Nieprawidłowy wybór. Wybierz opcję od 1 do 4.")
-import tkinter
+
 # import tkinter as tk
 #
 # tasks = []  # Lista zadań
@@ -531,245 +531,61 @@ import tkinter
 #     root.mainloop()
 
 
-# import random
-#
-# slowa = ["kot", "pies", "chomik", "ptak", "szczur", "królik", "rybka", "świnia", "krowa", "kura", "koń", "owca"]
-# wybrane_slowo = random.choice(slowa)
-# def gra_w_wisielca():
-#     print("Odgadnij moje słowo: \nKategoria to zwierzęta domowe/hodowlane.")
-#     ilosc_prob = 10
-#     while True:
-#         if input() == wybrane_slowo:
-#             print("Gratulacje, odgadłeś słowo!")
-#             exit(99)
-#         elif input() != wybrane_slowo:
-#             print("Źle! Ilość prób:", ilosc_prob)
-#             ilosc_prob = ilosc_prob - 1
-#         elif ilosc_prob == 0:
-#             print("Przegrałeś, koniec prób!")
-#
-# if __name__ == "__main__":
-#     print("Witaj w grze w wisielca!")
-#     gra_w_wisielca()
-# import random
-#
-# def wybierz_slowo():
-#     slowa = ["python", "programowanie", "komputer", "internet", "zabawa", "ksiazka"]
-#     return random.choice(slowa)
-#
-# def inicjalizuj_gre():
-#     slowo = wybierz_slowo()
-#     ukryte_slowo = ["_" if litera.isalpha() else litera for litera in slowo]
-#     zgadywane_litery = set()
-#     liczba_prob = 6
-#     return slowo, ukryte_slowo, zgadywane_litery, liczba_prob
-#
-# def wyswietl_stan_gry(ukryte_slowo, zgadywane_litery, liczba_prob):
-#     print("Stan gry:")
-#     print(" ".join(ukryte_slowo))
-#     print("Zgadywane litery:", ", ".join(zgadywane_litery))
-#     print(f"Liczba prób: {liczba_prob}")
-#
-# def sprawdz_zgadniecie(litera, slowo, ukryte_slowo):
-#     if litera in slowo:
-#         for i in range(len(slowo)):
-#             if slowo[i] == litera:
-#                 ukryte_slowo[i] = litera
-#         return True
-#     else:
-#         return False
-#
-# def gra_w_wisielca():
-#     slowo, ukryte_slowo, zgadywane_litery, liczba_prob = inicjalizuj_gre()
-#
-#     while "_" in ukryte_slowo and liczba_prob > 0:
-#         wyswietl_stan_gry(ukryte_slowo, zgadywane_litery, liczba_prob)
-#         zgadywana_litera = input("Podaj literę: ").lower()
-#
-#         if len(zgadywana_litera) == 1 and zgadywana_litera.isalpha():
-#             if zgadywana_litera in zgadywane_litery:
-#                 print("Ta litera już była zgadywana. Spróbuj ponownie.")
-#             else:
-#                 zgadywane_litery.add(zgadywana_litera)
-#                 if sprawdz_zgadniecie(zgadywana_litera, slowo, ukryte_slowo):
-#                     print("Brawo! Zgadłeś literę.")
-#                 else:
-#                     print("Nieprawidłowa litera. Tracisz jedną próbę.")
-#                     liczba_prob -= 1
-#         else:
-#             print("Podaj poprawną literę.")
-#
-#     if "_" not in ukryte_slowo:
-#         print("Gratulacje! Wygrałeś. Zgadłeś wszystkie litery.")
-#     else:
-#         print("Przegrałeś. Nie udało się odgadnąć słowa. Poprawne słowo to:", slowo)
-#
-# if __name__ == "__main__":
-#     print("Witaj w grze w wisielca!")
-#     gra_w_wisielca()
-# import tkinter as tk
-# from tkinter import messagebox
-#
-#
-# class Game:
-#     def __init__(self, title1, litera, litera2):
-#         self.window = tk.Tk()
-#         self.window.title(title1)
-#         self.current_player = litera
-#         self.board = [""] * 9
-#         messagebox.askquestion("Wybierz literę twojego gracza:", "O")
-#         self.buttons = []
-#         for i in range(3):
-#             row_buttons = []
-#             for j in range(3):
-#                 button = tk.Button(self.window, text="", font=("Helvetica", 30), width=5, height=2,
-#                                    command=lambda i=i, j=j: self.on_button_click(i, j, litera))
-#                 button.grid(row=i, column=j)
-#                 row_buttons.append(button)
-#             self.buttons.append(row_buttons)
-#
-#     def on_button_click(self, row, col, litera):
-#         if self.board[row * 3 + col] == "":
-#             self.board[row * 3 + col] = self.current_player
-#             self.buttons[row][col].config(text=self.current_player)
-#
-#             if self.check_winner():
-#                 messagebox.showinfo("Koniec gry", f"Wygrał gracz {self.current_player}!")
-#                 self.reset_game()
-#             elif "" not in self.board:
-#                 messagebox.showinfo("Koniec gry", "Remis!")
-#                 self.reset_game()
-#             else:
-#                 self.current_player = "O" if self.current_player == litera else litera
-#
-#     def check_winner(self):
-#         # Sprawdź wiersze, kolumny i przekątne
-#         for i in range(3):
-#             if self.board[i * 3] == self.board[i * 3 + 1] == self.board[i * 3 + 2] != "":
-#                 return True
-#             if self.board[i] == self.board[i + 3] == self.board[i + 6] != "":
-#                 return True
-#         if self.board[0] == self.board[4] == self.board[8] != "": # na ukos od góry lewej do dołu prawej
-#             return True
-#         if self.board[2] == self.board[4] == self.board[6] != "":
-#             return True
-#         return False
-#
-#     def reset_game(self, litera):
-#         self.current_player = litera
-#         self.board = [""] * 9
-#         for i in range(3):
-#             for j in range(3):
-#                 self.buttons[i][j].config(text="")
-#
-#
-# if __name__ == "__main__":
-#     game = Game('gama 1', "X", "O")
-#     game.window.mainloop()
-#
-#     gra = Game('gra 1', "X", "O")
-#     gra.window.mainloop()
-# import tkinter as tk
-# import random
-# from tkinter import messagebox
-# class GraZgadywanieLiczby:
-#   def __init__(self, root):
-#       self.root = root
-#       self.root.title("Gra w Zgadywanie Liczby")
-#
-#       self.liczba_do_odgadniecia = random.randint(1, 10)
-#       self.wynik_label = tk.Label(root, text="Podaj liczbę od 1 do 100:")
-#       self.wynik_label.pack(pady=10)
-#
-#       self.entry = tk.Entry(root)
-#       self.entry.pack(pady=10)
-#
-#       self.przycisk_sprawdz = tk.Button(root, text="Sprawdź", command=self.sprawdz)
-#       self.przycisk_sprawdz.pack(pady=10)
-#
-#       self.wynik_var = tk.StringVar()
-#       self.wynik_label = tk.Label(root, textvariable=self.wynik_var)
-#       self.wynik_label.pack(pady=10)
-#
-#
-#   def sprawdz(self):
-#       wprowadzony_tekst = self.entry.get()
-#       wprowadzona_liczba = int(wprowadzony_tekst)
-#       if wprowadzona_liczba == self.liczba_do_odgadniecia:
-#           messagebox.showinfo("", "Wygrałeś!")
-#       else:
-#           messagebox.showinfo("", "Źle!")
-#
-#
-#
-#
-# if __name__ == "__main__":
-#     root = tk.Tk()
-#     gra = GraZgadywanieLiczby(root)
-#     root.mainloop()
-
-import tkinter as tk
-from tkinter import messagebox
 import random
-#
-# class GraZgadywanieLiczby:
-#     def __init__(self, root):
-#         self.root = root
-#         self.root.title("Gra w Zgadywanie Liczby")
-#
-#         self.liczba_do_odgadniecia = random.randint(1, 100)
-#         self.wynik_label = tk.Label(root, text="Podaj liczbę od 1 do 100:")
-#         self.wynik_label.pack(pady=10)
-#
-#         self.entry = tk.Entry(root)
-#         self.entry.pack(pady=10)
-#
-#         self.przycisk_sprawdz = tk.Button(root, text="Sprawdź", command=self.sprawdz)
-#         self.przycisk_sprawdz.pack(pady=10)
-#
-#         self.wynik_var = tk.StringVar()
-#         self.wynik_label = tk.Label(root, textvariable=self.wynik_var)
-#         self.wynik_label.pack(pady=10)
-#
-#     def sprawdz(self):
-#         wprowadzony_tekst = self.entry.get()
-#         if wprowadzony_tekst:
-#             try:
-#                 wprowadzona_liczba = int(wprowadzony_tekst)
-#                 if wprowadzona_liczba == self.liczba_do_odgadniecia:
-#                     messagebox.showinfo("Gratulacje!", "Odgadłeś liczbę!")
-#                     self.root.quit()
-#                 elif wprowadzona_liczba < self.liczba_do_odgadniecia:
-#                     self.wynik_var.set("Za mało. Spróbuj jeszcze raz.")
-#                 else:
-#                     self.wynik_var.set("Za dużo. Spróbuj jeszcze raz.")
-#             except ValueError:
-#                 messagebox.showerror("Błąd", "Wprowadź poprawną liczbę całkowitą.")
-#         else:
-#             messagebox.showwarning("Uwaga", "Pole nie może być puste. Wprowadź liczbę.")
-#
-# if __name__ == "__main__":
-#     root = tk.Tk()
-#     gra = GraZgadywanieLiczby(root)
-#     root.mainloop()
 
-import tkinter as tk
-from tkinter import messagebox
-def wyswietl_drugi_komunikat():
-    messagebox.showwarning("ALERT", "POBRANY PLIK JEST NIEBEZPIECZNY, WIZRUS ZAINSTALOWANY")
 
-def wyswietl_komunikat():
-    messagebox.showinfo("Komunikat", "Witaj w moim programie Tkinter!")
 
-# Tworzymy główne okno
-root = tk.Tk()
-root.title("Prosty program Tkinter")
+slowa = ["kot", "pies", "chomik", "ptak", "szczur", "królik", "rybka", "świnia", "krowa", "kura", "koń", "owca"]
+wybrane_slowo = random.choice(slowa)
+def gra_w_wisielca():
+    print("Odgadnij moje słowo: \nKategoria to zwierzęta domowe/hodowlane.")
+    print("Zapamiętaj słowa na pamięć!")
+    if input() == wybrane_slowo:
+        print("Brawo, odgadłeś słowo!")
+    else:
+        print("Zła odpowiedź! Kreska narysowana, masz jeszcze 10 prób")
+        if input() == wybrane_slowo:
+            print("Brawo, odgadłeś słowo!")
+        else:
+            print("Zła odpowiedź! Kreska narysowana, masz jeszcze 9 prób")
+            if input() == wybrane_slowo:
+                print("Brawo, odgadłeś słowo!")
+            else:
+                print("Zła odpwiedź! Kreska narysowana, masz jeszcze 8 prób")
+                if input() == wybrane_slowo:
+                    print("Brawo, odgadłeś słowo!")
+                else:
+                    print("Zła odpwiedź! Kreska narysowana, masz jeszcze 7 prób")
+                    if input() == wybrane_slowo:
+                        print("Brawo, odgadłeś słowo!")
+                    else:
+                        print("Zła odpwiedź! Kreska narysowana, masz jeszcze 6 prób")
+                        if input() == wybrane_slowo:
+                            print("Brawo, odgadłeś słowo!")
+                        else:
+                            print("Zła odpwiedź! Kreska narysowana, masz jeszcze 5 prób")
+                            if input() == wybrane_slowo:
+                                print("Brawo, odgadłeś słowo!")
+                            else:
+                                print("Zła odpwiedź! Kreska narysowana, masz jeszcze 4 próby")
+                                if input() == wybrane_slowo:
+                                    print("Brawo, odgadłeś słowo!")
+                                else:
+                                    print("Zła odpwiedź! Kreska narysowana, masz jeszcze 3 próby")
+                                    if input() == wybrane_slowo:
+                                        print("Brawo, odgadłeś słowo!")
+                                    else:
+                                        print("Zła odpwiedź! Kreska narysowana, masz jeszcze 2 próby")
+                                        if input() == wybrane_slowo:
+                                            print("Brawo, odgadłeś słowo!")
+                                        else:
+                                            print("Zła odpwiedź! Kreska narysowana, masz jeszcze 1 próbę")
+                                            if input() == wybrane_slowo:
+                                                print("Brawo, odgadłeś słowo!")
+                                            else:
+                                                print("Przegrałeś, powieszono cię! :(")
 
-# Tworzymy przycisk
-przycisk = tk.Button(root, text="Kliknij mnie!", command=wyswietl_komunikat)
-przycisk.pack(pady=20)
 
-przycisk_2 = tk.Button(root, text="Kliknij mnie!", command=wyswietl_drugi_komunikat)
-przycisk_2.pack(pady=20)
-# Uruchamiamy główną pętlę programu
-root.mainloop()
+if __name__ == "__main__":
+    print("Witaj w grze w wisielca!")
+    gra_w_wisielca()
